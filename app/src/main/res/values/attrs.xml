@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="ControlLayout">
+
+        <attr name="android:textColor"/>
+        <attr name="android:textSize" format="dimension"/>
+        <attr name="android:text" format="string"/>
+
+        <attr name="controlRegionFrameColor" format="color"/>
+        <attr name="controlRegionFrameStrokeWidth" format="integer"/>
+
+        <attr name="controlRegionFrameStyle" format="enum">
+            <enum name="stroke" value="0"/>
+            <enum name="fill" value="1"/>
+        </attr>
+
+        <attr name="iconSrc" format="reference"/>
+        <attr name="checkIconSrc" format="reference"/>
+        <attr name="uncheckIconSrc" format="reference"/>
+
+        <attr name="controlRegionHeight" format="dimension"/>
+        <attr name="margin" format="dimension"/>
+
+        <attr name="iconEnabled" format="boolean"/>
+        <attr name="textEnabled" format="boolean"/>
+        <attr name="checkboxEnabled" format="boolean"/>
+
+        <attr name="iconFrameEnabled" format="boolean"/>
+        <attr name="textFrameEnabled" format="boolean"/>
+        <attr name="checkboxFrameEnabled" format="boolean"/>
+
+        <attr name="controlRegionIconWeight" format="float"/>
+        <attr name="controlRegionTextWeight" format="float"/>
+        <attr name="controlRegionCheckboxWeight" format="float"/>
+
+        <attr name="strokeLineCapItems" format="enum">
+            <enum name="round" value="1"/>
+            <enum name="square" value="0"/>
+        </attr>
+
+        <attr name="textAlign" format="enum">
+            <enum name="start" value="-1"/>
+            <enum name="center" value="0"/>
+            <enum name="end" value="1"/>
+        </attr>
+
+
+
+
+    </declare-styleable>
+
+
+
+</resources>
