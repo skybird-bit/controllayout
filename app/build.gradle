@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
 }
 
 
@@ -37,3 +38,28 @@ dependencies {
 }
 
 
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.release
+
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.github.skybird-bit'
+                artifactId = 'controllayout'
+                version = '0.0.2'
+            }
+            // Creates a Maven publication called “debug”.
+            debug(MavenPublication) {
+                // Applies the component for the debug build variant.
+                from components.debug
+
+                groupId = 'com.github.skybird-bit'
+                artifactId = 'controllayout-debug'
+                version = '0.0.2'
+            }
+        }
+    }
+}
