@@ -35,7 +35,7 @@
         <attr name="controlRegionTextWeight" format="float"/>
         <attr name="controlRegionCheckboxWeight" format="float"/>
 
-        <attr name="strokeLineCapItems" format="enum">
+        <attr name="regionsCorner" format="enum">
             <enum name="round" value="1"/>
             <enum name="square" value="0"/>
         </attr>

@@ -33,8 +33,8 @@ public class ControlLayout extends ViewGroup {
     public static final int TEXT_ALIGN_END = 1;
 
 
-    public static final int STROKE_LINE_CAP_ROUND = 1;
-    public static final int STROKE_LINE_CAP_SQUARE = 0;
+    public static final int REGIONS_CORNER_ROUND = 1;
+    public static final int REGIONS_CORNER_SQUARE = 0;
 
     private static final DisplayMetrics DISPLAY_METRICS = Resources.getSystem().getDisplayMetrics();
 
@@ -67,7 +67,7 @@ public class ControlLayout extends ViewGroup {
     private float controlRegionTextWeight;
     private float controlRegionCheckboxWeight;
 
-    private int strokeLineCap = STROKE_LINE_CAP_SQUARE;
+    private int strokeLineCap = REGIONS_CORNER_SQUARE;
 
     public ControlLayout(Context context) {
         this(context, (AttributeSet) null);
@@ -195,7 +195,7 @@ public class ControlLayout extends ViewGroup {
             how stroke line for frame of iconBox and textBox drawn there are two constants:
             round and square
          */
-        strokeLineCap = ta.getInt(R.styleable.ControlLayout_strokeLineCapItems, strokeLineCap);
+        strokeLineCap = ta.getInt(R.styleable.ControlLayout_regionsCorner, strokeLineCap);
         setStrokeLineCap(strokeLineCap);
 
 
@@ -210,10 +210,6 @@ public class ControlLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-
-        final boolean measureMatchParentChildren = widthMode != MeasureSpec.EXACTLY || heightMode != MeasureSpec.EXACTLY;
 
         int maxWidth = 0;
         int maxHeight = 0;
@@ -225,6 +221,7 @@ public class ControlLayout extends ViewGroup {
             View child = getChildAt(i);
 
             if (child.getVisibility() != GONE) {
+
                 measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, 0);
 
                 final LayoutParams lp = (LayoutParams) child.getLayoutParams();
@@ -357,7 +354,7 @@ public class ControlLayout extends ViewGroup {
 
         if (checkboxEnabled) {
             leftBound = rightBound + margin;
-            rightBound = getRight() - getPaddingRight() - margin;
+            rightBound = getMeasuredWidth() - getPaddingRight() - margin;
 
             int radius = Math.min((rightBound - leftBound) / 2 , (bottomBound - topBound)/2);
             int centerX = leftBound + (rightBound - leftBound) /2;
@@ -368,10 +365,6 @@ public class ControlLayout extends ViewGroup {
             checkboxRegion.setBounds(leftBound, topBound, rightBound, bottomBound);
 
         }
-
-        System.out.println("CheckBox , left: " + checkboxRegion.getBounds().left  + " right: " + checkboxRegion.getBounds().right);
-
-
 
     }
 
@@ -561,9 +554,9 @@ public class ControlLayout extends ViewGroup {
         Round the constants are also defined as fields:
         STROKE_LINE_CAP_SQUARE ,STROKE_LINE_CAP_ROUND
      */
-    public void setStrokeLineCap(int strokeLineCap) {
+    public void setStrokeLineCap(int regionsCorner) {
         float value = 0F;
-        if (strokeLineCap == STROKE_LINE_CAP_ROUND) {
+        if (regionsCorner == REGIONS_CORNER_ROUND) {
             value = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP ,4 , DISPLAY_METRICS);
 
             iconRegion.setStrokeRadius(value);
